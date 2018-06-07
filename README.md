@@ -32,7 +32,7 @@ You can contact us using [our general purpose mailing list](https://github.com/s
 The aim of this forked project is to implement runtime testing for the spotbugs plugin. This is achieved through AspectJ aspects that use JUnit runners to run a set of parameterized test cases and collect their results.
 
 ## Quick-and-dirty
-To work with junit within the plugin at runtime copy the needed junit jars libraries in the `lib` directory of the `eclipsePlugin` project, after that right click on the project in eclipse and select *build path > configure build path* then *add jars* and add the junit jars in the `lib` folder. Now open `MANIFEST.MF` and add
+To work with junit within the plugin testing at runtime you need to convert the eclipse project to aspectj (*right click > configure > convert to aspectj project*) and copy the needed junit jars libraries in the `lib` directory of the `eclipsePlugin` project, after that right click on the project in eclipse and select *build path > configure build path* then *add jars* and add the junit jars in the `lib` folder. Now open `MANIFEST.MF` and add
 ` lib/junit-4.12.jar,
  lib/hamcrest-all-1.3.jar,
  ...`
