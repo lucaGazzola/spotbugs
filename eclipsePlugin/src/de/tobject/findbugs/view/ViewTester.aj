@@ -48,9 +48,41 @@ public aspect ViewTester {
         
         testClasses.add(prefix+"classfile.TestClassDescriptor");
         
+//        testClasses.add(prefix+"classfile.impl.ClassFactoryTest");
         testClasses.add(prefix+"classfile.impl.NoopAnalysisCache");
-
         
+        testClasses.add(prefix+"config.ProjectFilterSettingsTest");
+        testClasses.add(prefix+"config.UserPreferencesTest");
+        
+        testClasses.add(prefix+"detect.FindSqlInjectionTest");
+//        testClasses.add(prefix+"detect.IncompatMaskTest");
+        
+        testClasses.add(prefix+"filter.NameMatchTest");
+        testClasses.add(prefix+"filter.NotMatcherTest");
+        testClasses.add(prefix+"filter.RelationalOpTest");
+        testClasses.add(prefix+"filter.SignatureUtilTest");
+        testClasses.add(prefix+"filter.SourceMatcherTest");
+        
+        testClasses.add(prefix+"gui2.FilterFactoryTest");
+//        testClasses.add(prefix+"gui2.SaveTypeTest");
+        
+//        testClasses.add(prefix+"internalAnnotation.SlashedClassNameTest");
+        
+//        testClasses.add(prefix+"io.IOTest");
+        
+//        testClasses.add(prefix+"jaif.JAIFScannerTest");
+        
+        testClasses.add(prefix+"ml.SplitCamelCaseIdentifierTest");
+        
+        testClasses.add(prefix+"util.ClassNameTest");
+        testClasses.add(prefix+"util.StringsTest");
+        
+        testClasses.add(prefix+"visitclass.DismantleBytecodeTest");
+        testClasses.add(prefix+"visitclass.GetNumberArgumentsTest");
+        testClasses.add(prefix+"visitclass.PreorderVisitorTest");
+        
+//        testClasses.add(prefix+"workflow.FindSeqNumTest");
+     
         for(int i=0; i<2; i++) {
             for(String testClass : testClasses) {
                 Result result;
