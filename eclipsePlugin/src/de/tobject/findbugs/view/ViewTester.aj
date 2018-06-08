@@ -21,13 +21,13 @@ public aspect ViewTester {
         String prefix = "edu.umd.cs.findbugs.testcases.";
         List<String> testClasses = new ArrayList<>();
         
-//        testClasses.add(prefix+"BugInstanceTest");
-//        testClasses.add(prefix+"ClassScreenerTest");
-//        testClasses.add(prefix+"IntAnnotationTest");
-//        testClasses.add(prefix+"JavaVersionTest");
-//        testClasses.add(prefix+"ObfuscateTest");
-//        testClasses.add(prefix+"OpcodeStackItemTest");
-//        testClasses.add(prefix+"SAXBugCollectionHandlerTest");
+        testClasses.add(prefix+"BugInstanceTest");
+        testClasses.add(prefix+"ClassScreenerTest");
+        testClasses.add(prefix+"IntAnnotationTest");
+        testClasses.add(prefix+"JavaVersionTest");
+        testClasses.add(prefix+"ObfuscateTest");
+        testClasses.add(prefix+"OpcodeStackItemTest");
+        testClasses.add(prefix+"SAXBugCollectionHandlerTest");
 //        
 //        testClasses.add(prefix+"architecture.PackageDependenciesTest");
 //        
