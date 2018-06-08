@@ -28,17 +28,17 @@ public aspect ViewTester {
         testClasses.add(prefix+"ObfuscateTest");
         testClasses.add(prefix+"OpcodeStackItemTest");
         testClasses.add(prefix+"SAXBugCollectionHandlerTest");
-//        
-//        testClasses.add(prefix+"architecture.PackageDependenciesTest");
-//        
-//        testClasses.add(prefix+"ba.FrameTest");
-//        testClasses.add(prefix+"ba.MethodHashTest");
-//        testClasses.add(prefix+"ba.NullnessAnnotationTest");
-//        testClasses.add(prefix+"ba.SignatureParserTest");
-//        
-//        testClasses.add(prefix+"generic.GenericSignatureParserTest");
+        
+        testClasses.add(prefix+"architecture.PackageDependenciesTest");
+        
+        testClasses.add(prefix+"ba.FrameTest");
+        testClasses.add(prefix+"ba.MethodHashTest");
+        testClasses.add(prefix+"ba.NullnessAnnotationTest");
+        testClasses.add(prefix+"ba.SignatureParserTest");
+        
+        testClasses.add(prefix+"generic.GenericSignatureParserTest");
         testClasses.add(prefix+"generic.GenericUtilitiesTest");
-//        testClasses.add(prefix+"generic.TestGenericObjectType");
+        testClasses.add(prefix+"generic.TestGenericObjectType");
         
         for(int i=0; i<2; i++) {
             for(String testClass : testClasses) {
@@ -51,11 +51,12 @@ public aspect ViewTester {
                     List<Failure> failures = result.getFailures();
                     System.out.println(failures);
                     
-//                    if(!failures.isEmpty()) {
-//                        for(int j=0; j<failures.size(); j++) {
-//                            System.out.println(failures.get(j).toString());
-//                        }
-//                    }
+                    if(!failures.isEmpty()) {
+                        for(Failure f : failures) {
+                            System.out.println(f.getTrace());
+                        }
+                    }
+                    
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
