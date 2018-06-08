@@ -17,7 +17,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-package edu.umd.cs.findbugs.testcases.generic;
+package edu.umd.cs.findbugs.testcases.ba.generic;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
