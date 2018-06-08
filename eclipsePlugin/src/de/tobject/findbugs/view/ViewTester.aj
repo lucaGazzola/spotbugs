@@ -36,9 +36,20 @@ public aspect ViewTester {
         testClasses.add(prefix+"ba.NullnessAnnotationTest");
         testClasses.add(prefix+"ba.SignatureParserTest");
         
-        testClasses.add(prefix+"generic.GenericSignatureParserTest");
-        testClasses.add(prefix+"generic.GenericUtilitiesTest");
-        testClasses.add(prefix+"generic.TestGenericObjectType");
+        testClasses.add(prefix+"ba.generic.GenericSignatureParserTest");
+        testClasses.add(prefix+"ba.generic.GenericUtilitiesTest");
+        testClasses.add(prefix+"ba.generic.TestGenericObjectType");
+        
+        testClasses.add(prefix+"ba.npe.IsNullValueTest");
+        testClasses.add(prefix+"ba.npe.NonNullParamPropertyTest");
+        testClasses.add(prefix+"ba.npe.ReturnPathTypeTest");
+        
+        testClasses.add(prefix+"ba.type.TypeFrameModelingVisitorTest");
+        
+        testClasses.add(prefix+"classfile.TestClassDescriptor");
+        
+        testClasses.add(prefix+"classfile.impl.NoopAnalysisCache");
+
         
         for(int i=0; i<2; i++) {
             for(String testClass : testClasses) {
