@@ -24,8 +24,7 @@ public class BugInstanceTestParameterized {
 
     @Parameters
     public static Collection<Object[]> data() {
-        BugInstance b;
-        b = new BugInstance("NP_NULL_ON_SOME_PATH", Priorities.NORMAL_PRIORITY);
+        BugInstance b = new BugInstance("NP_NULL_ON_SOME_PATH", Priorities.NORMAL_PRIORITY);
         b.setProperty("A", "a");
         b.setProperty("B", "b");
         b.setProperty("C", "c");
@@ -34,14 +33,14 @@ public class BugInstanceTestParameterized {
            });
     }
 
-    @Parameter // first data value (0) is default
-    public /* NOT private */ BugInstance b;
+    @Parameter
+    public BugInstance b;
 
     @Parameter(1)
-    public /* NOT private */ String[] properties;
+    public String[] properties;
 
     @Parameter(2)
-    public /* NOT private */ String[] propertiesLowerCase;
+    public String[] propertiesLowerCase;
 
     @Test
     public void testPropertyIterator() {
@@ -50,29 +49,26 @@ public class BugInstanceTestParameterized {
 
     @Test
     public void testRemoveThroughIterator1() {
-        removeThroughIterator(b.propertyIterator(), "A");
-        properties = (String[]) ArrayUtils.removeElement(properties, "A");
-        propertiesLowerCase = (String[]) ArrayUtils.removeElement(propertiesLowerCase, "a");
+        removeThroughIterator(b.propertyIterator(), properties[0]);
+        properties = (String[]) ArrayUtils.remove(properties, 0);
+        propertiesLowerCase = (String[]) ArrayUtils.remove(propertiesLowerCase, 0);
         checkPropertyIterator(b.propertyIterator(), properties, propertiesLowerCase);
-        b.setProperty("A", "a");
     }
 
     @Test
     public void testRemoveThroughIterator2() {
-        removeThroughIterator(b.propertyIterator(), "B");
-        properties = (String[]) ArrayUtils.removeElement(properties, "B");
-        propertiesLowerCase = (String[]) ArrayUtils.removeElement(propertiesLowerCase, "b");
+        removeThroughIterator(b.propertyIterator(), properties[1]);
+        properties = (String[]) ArrayUtils.remove(properties, 1);
+        propertiesLowerCase = (String[]) ArrayUtils.remove(propertiesLowerCase, 1);
         checkPropertyIterator(b.propertyIterator(), properties, propertiesLowerCase);
-        b.setProperty("B", "b");
     }
 
     @Test
     public void testRemoveThroughIterator3() {
-        removeThroughIterator(b.propertyIterator(), "C");
-        properties = (String[]) ArrayUtils.removeElement(properties, "C");
-        propertiesLowerCase = (String[]) ArrayUtils.removeElement(propertiesLowerCase, "c");
+        removeThroughIterator(b.propertyIterator(), properties[2]);
+        properties = (String[]) ArrayUtils.remove(properties, 2);
+        propertiesLowerCase = (String[]) ArrayUtils.remove(propertiesLowerCase, 2);
         checkPropertyIterator(b.propertyIterator(), properties, propertiesLowerCase);
-        b.setProperty("C", "c");
     }
 
     @Rule
@@ -81,9 +77,9 @@ public class BugInstanceTestParameterized {
         @Override
         protected void before() {
             b = new BugInstance("NP_NULL_ON_SOME_PATH", Priorities.NORMAL_PRIORITY);
-            b.setProperty("A", "a");
-            b.setProperty("B", "b");
-            b.setProperty("C", "c");
+            b.setProperty(properties[0], propertiesLowerCase[0]);
+            b.setProperty(properties[1], propertiesLowerCase[1]);
+            b.setProperty(properties[2], propertiesLowerCase[2]);
         }
     };
 
@@ -127,17 +123,11 @@ public class BugInstanceTestParameterized {
 
     @Test
     public void testRemoveAll1() {
-        removeThroughIterator(b.propertyIterator(), "A");
-        properties = (String[]) ArrayUtils.removeElement(properties, "A");
-        propertiesLowerCase = (String[]) ArrayUtils.removeElement(propertiesLowerCase, "a");
-        checkPropertyIterator(b.propertyIterator(), new String[] { "B", "C" }, new String[] { "b", "c" });
-        removeThroughIterator(b.propertyIterator(), "B");
-        properties = (String[]) ArrayUtils.removeElement(properties, "B");
-        propertiesLowerCase = (String[]) ArrayUtils.removeElement(propertiesLowerCase, "b");
-        checkPropertyIterator(b.propertyIterator(), new String[] { "C" }, new String[] { "c" });
-        removeThroughIterator(b.propertyIterator(), "C");
-        properties = (String[]) ArrayUtils.removeElement(properties, "C");
-        propertiesLowerCase = (String[]) ArrayUtils.removeElement(propertiesLowerCase, "c");
+        removeThroughIterator(b.propertyIterator(), properties[0]);
+        removeThroughIterator(b.propertyIterator(), properties[1]);
+        removeThroughIterator(b.propertyIterator(), properties[2]);
+        properties = new String[0];
+        properties = new String[0];
         checkPropertyIterator(b.propertyIterator(), new String[0], new String[0]);
     }
 

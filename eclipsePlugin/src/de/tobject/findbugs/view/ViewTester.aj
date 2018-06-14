@@ -7,7 +7,6 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
-
 /**
  * This aspect allows the execution of jUnit test cases at runtime
  *
@@ -22,6 +21,7 @@ public aspect ViewTester {
         List<String> testClasses = new ArrayList<>();
         
         testClasses.add(prefix+"BugInstanceTest");
+        testClasses.add(prefix+"BugInstanceTestParameterized");
         testClasses.add(prefix+"ClassScreenerTest");
         testClasses.add(prefix+"IntAnnotationTest");
         testClasses.add(prefix+"JavaVersionTest");
