@@ -40,35 +40,35 @@ public class BugInstanceTestParameterized {
     public String[] properties;
 
     @Parameter(2)
-    public String[] propertiesLowerCase;
+    public String[] propertiesValue;
 
     @Test
     public void testPropertyIterator() {
-        checkPropertyIterator(b.propertyIterator(), properties, propertiesLowerCase);
+        checkPropertyIterator(b.propertyIterator(), properties, propertiesValue);
     }
 
     @Test
     public void testRemoveThroughIterator1() {
         removeThroughIterator(b.propertyIterator(), properties[0]);
         properties = (String[]) ArrayUtils.remove(properties, 0);
-        propertiesLowerCase = (String[]) ArrayUtils.remove(propertiesLowerCase, 0);
-        checkPropertyIterator(b.propertyIterator(), properties, propertiesLowerCase);
+        propertiesValue = (String[]) ArrayUtils.remove(propertiesValue, 0);
+        checkPropertyIterator(b.propertyIterator(), properties, propertiesValue);
     }
 
     @Test
     public void testRemoveThroughIterator2() {
         removeThroughIterator(b.propertyIterator(), properties[1]);
         properties = (String[]) ArrayUtils.remove(properties, 1);
-        propertiesLowerCase = (String[]) ArrayUtils.remove(propertiesLowerCase, 1);
-        checkPropertyIterator(b.propertyIterator(), properties, propertiesLowerCase);
+        propertiesValue = (String[]) ArrayUtils.remove(propertiesValue, 1);
+        checkPropertyIterator(b.propertyIterator(), properties, propertiesValue);
     }
 
     @Test
     public void testRemoveThroughIterator3() {
         removeThroughIterator(b.propertyIterator(), properties[2]);
         properties = (String[]) ArrayUtils.remove(properties, 2);
-        propertiesLowerCase = (String[]) ArrayUtils.remove(propertiesLowerCase, 2);
-        checkPropertyIterator(b.propertyIterator(), properties, propertiesLowerCase);
+        propertiesValue = (String[]) ArrayUtils.remove(propertiesValue, 2);
+        checkPropertyIterator(b.propertyIterator(), properties, propertiesValue);
     }
 
     @Rule
@@ -77,9 +77,9 @@ public class BugInstanceTestParameterized {
         @Override
         protected void before() {
             b = new BugInstance("NP_NULL_ON_SOME_PATH", Priorities.NORMAL_PRIORITY);
-            b.setProperty(properties[0], propertiesLowerCase[0]);
-            b.setProperty(properties[1], propertiesLowerCase[1]);
-            b.setProperty(properties[2], propertiesLowerCase[2]);
+            b.setProperty(properties[0], propertiesValue[0]);
+            b.setProperty(properties[1], propertiesValue[1]);
+            b.setProperty(properties[2], propertiesValue[2]);
         }
     };
 
@@ -110,15 +110,15 @@ public class BugInstanceTestParameterized {
     public void testRemoveAndAdd() {
         removeThroughIterator(b.propertyIterator(), "C");
         properties = (String[]) ArrayUtils.removeElement(properties, "C");
-        propertiesLowerCase = (String[]) ArrayUtils.removeElement(propertiesLowerCase, "c");
+        propertiesValue = (String[]) ArrayUtils.removeElement(propertiesValue, "c");
         b.setProperty("D", "d");
         properties = (String[]) ArrayUtils.add(properties, "D");
-        propertiesLowerCase = (String[]) ArrayUtils.add(propertiesLowerCase, "d");
-        checkPropertyIterator(b.propertyIterator(), properties, propertiesLowerCase);
+        propertiesValue = (String[]) ArrayUtils.add(propertiesValue, "d");
+        checkPropertyIterator(b.propertyIterator(), properties, propertiesValue);
         b.setProperty("E", "e");
         properties = (String[]) ArrayUtils.add(properties, "E");
-        propertiesLowerCase = (String[]) ArrayUtils.add(propertiesLowerCase, "e");
-        checkPropertyIterator(b.propertyIterator(), properties, propertiesLowerCase);
+        propertiesValue = (String[]) ArrayUtils.add(propertiesValue, "e");
+        checkPropertyIterator(b.propertyIterator(), properties, propertiesValue);
     }
 
     @Test

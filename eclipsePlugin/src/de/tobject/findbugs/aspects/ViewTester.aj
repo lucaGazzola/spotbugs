@@ -1,4 +1,4 @@
-package de.tobject.findbugs.view;
+package de.tobject.findbugs.aspects;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,8 @@ import java.util.List;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
+
+import de.tobject.findbugs.view.BugInfoView;
 
 /**
  * This aspect allows the execution of jUnit test cases at runtime
@@ -16,6 +18,7 @@ public aspect ViewTester {
     pointcut callBugInfoView(BugInfoView view) : execution(BugInfoView.new(..)) && target(view);
     
     before(BugInfoView view) : callBugInfoView(view){
+        
         JUnitCore jUnitCore = new JUnitCore();
         String prefix = "edu.umd.cs.findbugs.testcases.";
         List<String> testClasses = new ArrayList<>();
