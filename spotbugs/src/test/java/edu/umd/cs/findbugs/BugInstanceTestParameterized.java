@@ -1,4 +1,4 @@
-package edu.umd.cs.findbugs.testcases;
+package edu.umd.cs.findbugs;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -15,10 +15,6 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
-import edu.umd.cs.findbugs.BugInstance;
-import edu.umd.cs.findbugs.BugProperty;
-import edu.umd.cs.findbugs.Priorities;
-
 @RunWith(Parameterized.class)
 public class BugInstanceTestParameterized {
 
@@ -28,9 +24,7 @@ public class BugInstanceTestParameterized {
         b.setProperty("A", "a");
         b.setProperty("B", "b");
         b.setProperty("C", "c");
-        return Arrays.asList(new Object[][] {
-                { b, new String[] { "A", "B", "C" }, new String[] { "a", "b", "c" } }
-           });
+        return Arrays.asList(new Object[][] { { b, new String[] { "A", "B", "C" }, new String[] { "a", "b", "c" } } });
     }
 
     @Parameter

@@ -1,6 +1,6 @@
 /*
- * FindBugs - Find Bugs in Java programs
- * Copyright (C) 2003-2008 University of Maryland
+ * Contributions to SpotBugs
+ * Copyright (C) 2018, luca
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -16,20 +16,8 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
+package edu.umd.cs.findbugs.aspects;
 
-package edu.umd.cs.findbugs.testcases.ba.type;
+public aspect IntAnnotationTester {
 
-import org.junit.Ignore;
-import org.junit.Test;
-
-/**
- * @author pugh
- */
-public class TypeFrameModelingVisitorTest {
-
-    @Ignore
-    @Test
-    public void testMapSignaturePattern() {
-        //        assertTrue(TypeFrameModelingVisitor.mapSignaturePattern.matcher("<") && !sourceSignature.contains("Map<TK;TV;>"))
-    }
 }
