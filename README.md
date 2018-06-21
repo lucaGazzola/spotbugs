@@ -30,6 +30,7 @@ You can contact us using [our general purpose mailing list](https://github.com/s
 
 # Fork
 The aim of this forked project is to implement runtime testing for the spotbugs plugin. This is achieved through AspectJ aspects that use JUnit runners to run a set of parameterized test cases and collect their results.
+After you import the project in eclipse as described in the Build section above, add aspectj capabilities to the spotbugs-spotbugs project right clicking on the project itself and selecting configure -> convert to aspectj project.
  
  
  
