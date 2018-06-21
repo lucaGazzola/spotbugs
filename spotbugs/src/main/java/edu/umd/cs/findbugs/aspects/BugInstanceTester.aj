@@ -14,43 +14,6 @@ import edu.umd.cs.findbugs.logger.SingletonLogger;
 
 
 public aspect BugInstanceTester {
-
-//    pointcut callSetProperty(BugInstance bi) : execution(* BugInstance.setProperty(String, String)) && target(bi);
-//    
-//    after(BugInstance bi) : callSetProperty(bi){
-//        
-//        Logger logger = SingletonLogger.getInstance();
-//        
-//        logger.info(bi.getInstanceKey());
-//        
-//        JUnitCore jUnitCore = new JUnitCore();
-//        String prefix = "edu.umd.cs.findbugs.";
-//        List<String> testClasses = new ArrayList<>();
-//        
-//        testClasses.add(prefix+"BugInstanceTestParameterized");
-//        
-//        for(int i=0; i<2; i++) {
-//            for(String testClass : testClasses) {
-//                Result result;
-//                try {
-//                    result = jUnitCore.run(Class.forName(testClass)); 
-//                    logger.info("test class: "+testClass);
-//                    logger.info("ran: " + result.getRunCount() + " failed: " + result.getFailureCount());
-//                    
-//                    List<Failure> failures = result.getFailures();
-//                    
-//                    if(!failures.isEmpty()) {
-//                        for(Failure f : failures) {
-//                            logger.info(f.getTrace());
-//                        }
-//                    }
-//                    
-//                } catch (ClassNotFoundException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//    }
     
   pointcut callBugInstance(BugInstance bi) : execution(BugInstance.new(..)) && target(bi) && if(TestFlag.testing == false);
   
@@ -59,9 +22,7 @@ public aspect BugInstanceTester {
       TestFlag.testing = true;
       
       Logger logger = SingletonLogger.getInstance();
-      
-      // logger.info(bi.toString());
-      
+            
       JUnitCore jUnitCore = new JUnitCore();
       Result result = jUnitCore.run(BugInstanceTestParameterized.class);
       
