@@ -21,6 +21,8 @@ public aspect BugInstanceTester {
       
       TestFlag.testing = true;
       
+      BugInstanceStorage.b = bi;
+      
       Logger logger = SingletonLogger.getInstance();
             
       JUnitCore jUnitCore = new JUnitCore();
