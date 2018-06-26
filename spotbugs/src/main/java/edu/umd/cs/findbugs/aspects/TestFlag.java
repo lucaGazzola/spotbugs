@@ -25,5 +25,6 @@ package edu.umd.cs.findbugs.aspects;
 public class TestFlag {
 
     public static boolean testing = false;
+    public static boolean instrumentation = true;
 
 }
