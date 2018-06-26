@@ -19,13 +19,19 @@
 package edu.umd.cs.findbugs.aspects;
 
 import edu.umd.cs.findbugs.BugInstance;
+import edu.umd.cs.findbugs.ClassScreener;
+import edu.umd.cs.findbugs.IntAnnotation;
+import edu.umd.cs.findbugs.JavaVersion;
 
 /**
  * @since ?
  *
  */
-public class BugInstanceStorage {
+public class TestStorage {
 
-    public static BugInstance b;
+    public static BugInstance bugInstance;
+    public static ClassScreener classScreener;
+    public static IntAnnotation intAnnotation;
+    public static JavaVersion javaVersion;
 
 }

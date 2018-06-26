@@ -25,31 +25,31 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
-import edu.umd.cs.findbugs.IntAnnotation;
-import edu.umd.cs.findbugs.IntAnnotationTestField;
+import edu.umd.cs.findbugs.JavaVersion;
+import edu.umd.cs.findbugs.JavaVersionTestField;
 import edu.umd.cs.findbugs.logger.SingletonLogger;
 
 /**
  * @since ?
  *
  */
-public aspect IntAnnotationTester {
+public aspect JavaVersionTester {
     
-    pointcut callIntAnnotation(IntAnnotation ia) : execution(IntAnnotation.new(..)) && target(ia) && if(TestFlag.intAnnotationTesting == false);
+pointcut callJavaVersion(JavaVersion jv) : execution(JavaVersion.new(..)) && target(jv) && if(TestFlag.javaVersionTesting == false);
     
-    after(IntAnnotation ia) : callIntAnnotation(ia){
+    after(JavaVersion jv) : callJavaVersion(jv){
         
         if(TestFlag.instrumentation) {
         
-            TestFlag.intAnnotationTesting = true;
-            TestStorage.intAnnotation = ia;
+            TestFlag.javaVersionTesting = true;
+            TestStorage.javaVersion = jv;
             
             Logger logger = SingletonLogger.getInstance();
             
             JUnitCore jUnitCore = new JUnitCore();
-            Result result = jUnitCore.run(IntAnnotationTestField.class);
+            Result result = jUnitCore.run(JavaVersionTestField.class);
             
-            logger.info("test class: "+TestStorage.intAnnotation.toString());
+            logger.info("test class: "+TestStorage.javaVersion.toString());
             logger.info("ran: " + result.getRunCount() + " failed: " + result.getFailureCount());
             
             List<Failure> failures = result.getFailures();
@@ -60,7 +60,7 @@ public aspect IntAnnotationTester {
                 }
             }
             
-            TestFlag.intAnnotationTesting = false;
+            TestFlag.javaVersionTesting = false;
         }
     }
 

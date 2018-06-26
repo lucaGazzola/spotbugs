@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.umd.cs.findbugs.aspects.BugInstanceStorage;
+import edu.umd.cs.findbugs.aspects.TestStorage;
 
 public class BugInstanceTestField {
 
@@ -15,13 +15,13 @@ public class BugInstanceTestField {
 
     @Before
     public void setUp() {
-        if (BugInstanceStorage.b == null) {
+        if (TestStorage.bugInstance == null) {
             b = new BugInstance("NP_NULL_ON_SOME_PATH", Priorities.NORMAL_PRIORITY);
             b.setProperty("A", "a");
             b.setProperty("B", "b");
             b.setProperty("C", "c");
         } else {
-            b = BugInstanceStorage.b;
+            b = TestStorage.bugInstance;
             // Logger logger = SingletonLogger.getInstance();
             // logger.info(b.toString());
 

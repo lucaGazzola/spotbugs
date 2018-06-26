@@ -14,22 +14,22 @@ import edu.umd.cs.findbugs.logger.SingletonLogger;
 
 public aspect BugInstanceTester {
     
-  pointcut callBugInstance(BugInstance bi) : execution(BugInstance.new(..)) && target(bi) && if(TestFlag.testing == false);
+  pointcut callBugInstance(BugInstance bi) : execution(BugInstance.new(..)) && target(bi) && if(TestFlag.bugInstanceTesting == false);
   
   after(BugInstance bi) : callBugInstance(bi){
       
       if(TestFlag.instrumentation) {
       
-          TestFlag.testing = true;
+          TestFlag.bugInstanceTesting = true;
           
-          BugInstanceStorage.b = bi;
+          TestStorage.bugInstance = bi;
           
           Logger logger = SingletonLogger.getInstance();
                 
           JUnitCore jUnitCore = new JUnitCore();
           Result result = jUnitCore.run(BugInstanceTestField.class);
           
-          logger.info("test class: "+BugInstanceStorage.b.toString());
+          logger.info("test class: "+TestStorage.bugInstance.toString());
           logger.info("ran: " + result.getRunCount() + " failed: " + result.getFailureCount());
           
           List<Failure> failures = result.getFailures();
@@ -40,7 +40,7 @@ public aspect BugInstanceTester {
               }
           }
           
-          TestFlag.testing = false;
+          TestFlag.bugInstanceTesting = false;
       }
       
   }

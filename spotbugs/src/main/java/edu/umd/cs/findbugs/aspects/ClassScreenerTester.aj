@@ -25,31 +25,32 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
-import edu.umd.cs.findbugs.IntAnnotation;
-import edu.umd.cs.findbugs.IntAnnotationTestField;
+import edu.umd.cs.findbugs.ClassScreener;
+import edu.umd.cs.findbugs.ClassScreenerTestField;
+import edu.umd.cs.findbugs.IClassScreener;
 import edu.umd.cs.findbugs.logger.SingletonLogger;
 
 /**
  * @since ?
  *
  */
-public aspect IntAnnotationTester {
+public aspect ClassScreenerTester {
     
-    pointcut callIntAnnotation(IntAnnotation ia) : execution(IntAnnotation.new(..)) && target(ia) && if(TestFlag.intAnnotationTesting == false);
+    pointcut callClassScreener(ClassScreener cs) : execution(ClassScreener.new(..)) && target(cs) && if(TestFlag.classScreenerTesting == false);
     
-    after(IntAnnotation ia) : callIntAnnotation(ia){
+    after(ClassScreener cs) : callClassScreener(cs){
         
         if(TestFlag.instrumentation) {
         
-            TestFlag.intAnnotationTesting = true;
-            TestStorage.intAnnotation = ia;
+            TestFlag.classScreenerTesting = true;
+            TestStorage.classScreener = cs;
             
             Logger logger = SingletonLogger.getInstance();
             
             JUnitCore jUnitCore = new JUnitCore();
-            Result result = jUnitCore.run(IntAnnotationTestField.class);
+            Result result = jUnitCore.run(ClassScreenerTestField.class);
             
-            logger.info("test class: "+TestStorage.intAnnotation.toString());
+            logger.info("test class: "+TestStorage.classScreener.toString());
             logger.info("ran: " + result.getRunCount() + " failed: " + result.getFailureCount());
             
             List<Failure> failures = result.getFailures();
@@ -60,7 +61,7 @@ public aspect IntAnnotationTester {
                 }
             }
             
-            TestFlag.intAnnotationTesting = false;
+            TestFlag.classScreenerTesting = false;
         }
     }
 
