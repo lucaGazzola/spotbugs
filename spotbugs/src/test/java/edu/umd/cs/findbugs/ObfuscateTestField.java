@@ -16,20 +16,32 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
-package edu.umd.cs.findbugs.aspects;
+package edu.umd.cs.findbugs;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
 
 /**
  * @since ?
  *
  */
-public class TestFlag {
+public class ObfuscateTestField {
 
-    public static boolean bugInstanceTesting = false;
-    public static boolean classScreenerTesting = false;
-    public static boolean intAnnotationTesting = false;
-    public static boolean javaVersionTesting = false;
-    public static boolean obfuscateTesting = false;
+    @Test
+    public void testMethodSignature() {
+        String sig = "([Lcom.google.Search;I)Lcom.google.Money;";
+        String result = Obfuscate.hashMethodSignature(sig);
+        assertTrue("hash of " + sig + " gives " + result, result.indexOf("google") == -1);
+        System.out.println(result);
+    }
 
-    public static boolean instrumentation = true;
+    @Test
+    public void testMethodSignatureDoesntChangeForCoreTypes() {
+        String sig = "([Ljava/lang/String;I)Ljava/util/Map;";
+        String result = Obfuscate.hashMethodSignature(sig);
+        assertEquals(sig, result);
+    }
 
 }
