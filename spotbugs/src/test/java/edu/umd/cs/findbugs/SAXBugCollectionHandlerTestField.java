@@ -20,11 +20,15 @@ package edu.umd.cs.findbugs;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.logging.Logger;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import edu.umd.cs.findbugs.aspects.TestStorage;
+import edu.umd.cs.findbugs.logger.SingletonLogger;
 
 
 public class SAXBugCollectionHandlerTestField {
@@ -39,8 +43,31 @@ public class SAXBugCollectionHandlerTestField {
     }
 
     @Test
-    public void testBugInstanceXmlPropsNoReviews() throws Exception {
+    public void testCollectionSize() throws Exception {
+
+        // this test is called after SortedBugCollection.add(BugInstance) is called, so we expect the size to be at
+        // least 1
         assertTrue(sbc.getCollection().size() >= 1);
+    }
+
+    @Test
+    public void testCollectionRemove() throws Exception {
+
+        Collection<BugInstance> collection = sbc.getCollection();
+        int size = collection.size();
+        Iterator<BugInstance> iterator = collection.iterator();
+        BugInstance b = null;
+        if (iterator.hasNext()) {
+            b = iterator.next();
+        }
+        Logger logger = SingletonLogger.getInstance();
+        logger.info(sbc.getCollection().size() + "");
+        sbc.remove(b);
+        logger.info(sbc.getCollection().size() + "");
+
+        if (b != null) {
+            assertTrue(sbc.getCollection().size() == (size - 1));
+        }
     }
 
 }
