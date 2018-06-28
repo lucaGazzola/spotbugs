@@ -16,26 +16,31 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
-package edu.umd.cs.findbugs.aspects;
+package edu.umd.cs.findbugs;
 
-import edu.umd.cs.findbugs.BugInstance;
-import edu.umd.cs.findbugs.ClassScreener;
-import edu.umd.cs.findbugs.IntAnnotation;
-import edu.umd.cs.findbugs.JavaVersion;
-import edu.umd.cs.findbugs.OpcodeStack;
-import edu.umd.cs.findbugs.SortedBugCollection;
+import static org.junit.Assert.assertTrue;
 
-/**
- * @since ?
- *
- */
-public class TestStorage {
 
-    public static BugInstance bugInstance;
-    public static ClassScreener classScreener;
-    public static IntAnnotation intAnnotation;
-    public static JavaVersion javaVersion;
-    public static OpcodeStack.Item opcodeStackItem;
-    public static SortedBugCollection sortedBugCollection;
+import org.junit.Before;
+import org.junit.Test;
+
+import edu.umd.cs.findbugs.aspects.TestStorage;
+
+
+public class SAXBugCollectionHandlerTestField {
+
+    private SortedBugCollection sbc;
+
+    @Before
+    public void setUp() {
+        if (TestStorage.sortedBugCollection != null) {
+            sbc = TestStorage.sortedBugCollection;
+        }
+    }
+
+    @Test
+    public void testBugInstanceXmlPropsNoReviews() throws Exception {
+        assertTrue(sbc.getCollection().size() >= 1);
+    }
 
 }

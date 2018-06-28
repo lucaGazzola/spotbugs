@@ -15,16 +15,8 @@ public class BugInstanceTestField {
 
     @Before
     public void setUp() {
-        if (TestStorage.bugInstance == null) {
-            b = new BugInstance("NP_NULL_ON_SOME_PATH", Priorities.NORMAL_PRIORITY);
-            b.setProperty("A", "a");
-            b.setProperty("B", "b");
-            b.setProperty("C", "c");
-        } else {
+        if (TestStorage.bugInstance != null) {
             b = TestStorage.bugInstance;
-            // Logger logger = SingletonLogger.getInstance();
-            // logger.info(b.toString());
-
         }
     }
 

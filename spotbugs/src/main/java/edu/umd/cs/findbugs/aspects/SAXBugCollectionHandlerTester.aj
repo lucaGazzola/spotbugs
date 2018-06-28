@@ -25,43 +25,47 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
-import edu.umd.cs.findbugs.JavaVersion;
-import edu.umd.cs.findbugs.JavaVersionTestField;
 import edu.umd.cs.findbugs.logger.SingletonLogger;
+import edu.umd.cs.findbugs.BugInstance;
+import edu.umd.cs.findbugs.SAXBugCollectionHandlerTestField;
+import edu.umd.cs.findbugs.SortedBugCollection;
+import java.io.Reader;
 
 /**
  * @since ?
  *
  */
-public aspect JavaVersionTester {
+public aspect SAXBugCollectionHandlerTester {
     
-    pointcut callJavaVersion(JavaVersion jv) : execution(JavaVersion.new(..)) && target(jv) && if(TestFlag.javaVersionTesting == false);
+    pointcut callSortedBugCollection(SortedBugCollection sbc) : execution(public boolean SortedBugCollection.add(BugInstance)) && target(sbc) && if(TestFlag.SAXBugCollectionHandlerTesting == false);
     
-    after(JavaVersion jv) : callJavaVersion(jv){
+    after(SortedBugCollection sbc) : callSortedBugCollection(sbc){
         
         if(TestFlag.instrumentation) {
         
-            TestFlag.javaVersionTesting = true;
-            TestStorage.javaVersion = jv;
+            TestFlag.SAXBugCollectionHandlerTesting = true;
+            
+            TestStorage.sortedBugCollection = sbc;
             
             Logger logger = SingletonLogger.getInstance();
-            
+                  
             JUnitCore jUnitCore = new JUnitCore();
-            Result result = jUnitCore.run(JavaVersionTestField.class);
+            Result result = jUnitCore.run(SAXBugCollectionHandlerTestField.class);
             
-            logger.info("test class: "+TestStorage.javaVersion.toString());
+            logger.info("test class: "+sbc.toString());
             logger.info("ran: " + result.getRunCount() + " failed: " + result.getFailureCount());
             
             List<Failure> failures = result.getFailures();
-            
+          
             if(!failures.isEmpty()) {
                 for(Failure f : failures) {
                     logger.info(f.getTrace());
                 }
             }
             
-            TestFlag.javaVersionTesting = false;
+            TestFlag.SAXBugCollectionHandlerTesting = false;
         }
+        
     }
 
 }

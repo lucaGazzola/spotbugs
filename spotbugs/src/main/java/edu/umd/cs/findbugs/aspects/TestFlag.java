@@ -29,6 +29,8 @@ public class TestFlag {
     public static boolean intAnnotationTesting = false;
     public static boolean javaVersionTesting = false;
     public static boolean obfuscateTesting = false;
+    public static boolean opcodeStackItemTesting = false;
+    public static boolean SAXBugCollectionHandlerTesting = false;
 
     public static boolean instrumentation = true;
 
